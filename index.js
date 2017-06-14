@@ -85,19 +85,13 @@ function _bot(){
   bot.on('message', function(event) {
     if (event.message.type == 'text') {
       var msg = event.message.text;
-      var replyMsg = '';
       if (msg.contains('濕度') != -1) {
         bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
       }
       if (msg.contains('溫度') != -1) {
         bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mTemp);
       }
-      
-      event.reply(replyMsg).then(function(data) {
-        console.log(replyMsg);
-      }).catch(function(error) {
-        console.log('error');
-      });
+
     }
   });
 //  bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
