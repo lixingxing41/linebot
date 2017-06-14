@@ -4,14 +4,11 @@ require("webduino-blockly");
 var myFirebase;
 var dht;
 var firebase = require("firebase");
+
+var mTemp=mHum=bRain=uid=i=flag=0;
+
 var linebot = require('linebot');
 var express = require('express');
-var mTemp,mHum;
-var bRain;
-var uid;
-var i = 0;
-var flag = 0;
-
 var bot = linebot({
   channelId: '1519721522',
   channelSecret: '806587c1591561d5843efc5921d1dad5',
