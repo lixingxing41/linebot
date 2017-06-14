@@ -145,7 +145,7 @@ function rain(temperature,humidity){
      bRain=1;
      break;
   case 26:
-     if(humidity>60)
+     if(humidity>77)
       bRain=1;
      break;
   case 27:
@@ -186,9 +186,9 @@ boardReady({device: 'YWgg'}, function (board) {
     mTemp = dht.temperature;
     console.log(mHum);
     i++;
-    if(i>6)
+    if(i > 180)
     {
-      bRain=i = 0;
+      bRain = i = 0;
       rain(mTemp,mHum);
     }
     
