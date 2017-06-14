@@ -9,6 +9,7 @@ var express = require('express');
 var mTemp,mHum;
 var bRain;
 var uid;
+var i = 0;
 
 var bot = linebot({
   channelId: '1519721522',
@@ -87,7 +88,8 @@ function _bot(){
  console.log("bot",bRain);
   if(bRain==1)
   {
-    bot.push('U29c716493f690891169338083c3599ca', '現在日幣 ');
+    bot.push('U29c716493f690891169338083c3599ca', '家裡附近可能會下雨，回家收衣服喔!! ');
+    bRain=0;
   }
   bot.on('message', function(event) {
     uid = event.source.userId;
@@ -143,7 +145,7 @@ function rain(temperature,humidity){
      bRain=1;
      break;
   case 26:
-     if(humidity>60)
+     if(humidity>77)
       bRain=1;
      break;
   case 27:
@@ -177,14 +179,19 @@ boardReady({device: 'YWgg'}, function (board) {
   myFirebase.set({}); //clear data
   console.log("clear ok");
   //每十秒檢測一次，且記錄每半小之平均值
-  var i = 0;
+ 
   var temp = 0, humidity = 0;
-  bRain = 0;
   dht.read(function(evt){
     mHum = dht.humidity; 
     mTemp = dht.temperature;
     console.log(mHum);
-    rain(mTemp,mHum);
+    i++;
+    if(i>180)
+    {
+      bRain = 0;
+      rain(mTemp,mHum);
+    }
+    
     _bot();
     
 /*    if(get_time("hms") == "0:0:0"){
