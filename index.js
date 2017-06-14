@@ -8,6 +8,7 @@ var linebot = require('linebot');
 var express = require('express');
 var mTemp,mHum;
 var bRain;
+var uid;
 
 var bot = linebot({
   channelId: '1519721522',
@@ -89,6 +90,8 @@ function _bot(){
     //bot.push('b64e536b-a892-4020-b085-ed89f060a149', '現在日幣 ' + jp + '，該買啦！');
   }
   bot.on('message', function(event) {
+    uid = event.source.userId;
+    console.log(uid);
   if (event.message.type = 'text') {
     var msg = event.message.text;
     if(msg.indexOf('濕度') != -1)
