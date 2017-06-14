@@ -80,7 +80,7 @@ function get_time(t) {
 }
 
 boardReady({
-  device: 'YWgg',
+  device: 'XxOk',
   multi: true
 }, function(board) {
   board.samplingInterval = 250;
