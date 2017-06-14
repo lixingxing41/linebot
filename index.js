@@ -82,9 +82,8 @@ function get_time(t) {
 
 function _bot(){
   clearTimeout(timer);
-  mHum = dht.humidity; 
   bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
-  timer = setInterval(linebot, 120000);
+  timer = setInterval(linebot, 1000);
 }
 
 
@@ -98,6 +97,7 @@ boardReady({device: 'XxOk'}, function (board) {
   //每十秒檢測一次，且記錄每半小之平均值
   var i = 0;
   var temp = 0, humidity = 0;
+  mHum = dht.humidity; 
   _bot();
   /*dht.read(function(evt){
     mTemptemp = dht.temperature;
