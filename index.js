@@ -105,6 +105,8 @@ function _bot(){
           msg = "現在濕度為 " + mHum + " %";
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
+        if(msg == '呼叫工具人')
+          msg = '就知道你想我了吧~';
         if(msg == '工具人閉嘴'){
           flag = 1;
           msg = '掰掰~ 再次呼叫請輸入\"呼叫工具人\"';
@@ -118,7 +120,7 @@ function _bot(){
         });
       }else if(flag == 1){
         if(msg == '呼叫工具人')
-        flag = 0;
+          flag = 0;
       }
     }
   });
