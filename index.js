@@ -6,11 +6,12 @@ var dht;
 var firebase = require("firebase");
 var linebot = require('linebot');
 var express = require('express');
+var mTemp,mHum;
 
 var bot = linebot({
-  channelId: "1519721522",
-  channelSecret: "806587c1591561d5843efc5921d1dad5",
-  channelAccessToken: "MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU="
+  channelId: '1519721522',
+  channelSecret: '806587c1591561d5843efc5921d1dad5',
+  channelAccessToken: 'MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -38,7 +39,6 @@ var server = app.listen(process.env.PORT || 8080, function() {
   var myFirebase = db.ref();
 
   var timer;
-  linebot();
 
 function get_date(t) {
   var varDay = new Date(),
@@ -80,25 +80,16 @@ function get_time(t) {
   return varNow;
 }
 
-function linebot(){
+function _bot(){
   clearTimeout(timer);
-  if (dht >0) {
-        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
-      }
+ 
+        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
+  dht.read
       timer = setInterval(linebot, 120000);
 }
 
-boardReady({
-  device: 'XxOk',
-  multi: true
-}, function(board) {
-  board.samplingInterval = 250;
-  dht = getDht(board, 11);
-//  if (dht.humidity == 0) {
-   //     bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
-  //    }
-});
-/*boardReady({device: 'YWgg'}, function (board) {
+
+boardReady({device: 'XxOk'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
   //myFirebase = new Firebase("https://webduino-23015.firebaseio.com/");
@@ -108,12 +99,12 @@ boardReady({
   //每十秒檢測一次，且記錄每半小之平均值
   var i = 0;
   var temp = 0, humidity = 0;
-  dht.read(function(evt){
+  _bot();
+  /*dht.read(function(evt){
+    mTemptemp = dht.temperature;
+   mHum = dht.humidity;
    temp += dht.temperature;
    humidity += dht.humidity;
-   if (dht.humidity > 0) {
-        bot.push('1519721522', '現在濕度 ' + dht.humidity);
-      }
    i++;
    if(i>59){
     temp /= 60;
@@ -128,5 +119,5 @@ boardReady({
         humidity = 0;
         i = 0;
    }
-  }, 10000);
-});*/
+  }, 10000); */
+});
