@@ -102,7 +102,7 @@ function _bot(){
 }
 
 
-boardReady({device: 'XxOk'}, function (board) {
+boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
   //myFirebase = new Firebase("https://webduino-23015.firebaseio.com/");
