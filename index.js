@@ -110,56 +110,56 @@ function rain(temperature,humidity){
   case 20:
      if(humidity>80)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-      return 1;
+      bRain=1;
      break;
   case 21:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return 1;
+      bRain=1;
      break;
   case 22:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return 1;
+      bRain=1;
      break;
   case 23:
      if(humidity>72)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return 1;
+      bRain=1;
      break;
   case 24:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return 1;
+      bRain=1;
      break;
   case 25:
      if(humidity>76)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return 1;
+     bRain=1;
      break;
   case 26:if(humidity>72)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return msg;
+      bRain=1;
      break;
   case 27:
      if(humidity>70)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return msg;
+      bRain=1;
      break;
   case 28:
      if(humidity>71)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return msg;
+      bRain=1;
      break;
   case 29:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return msg;
+      bRain=1;
      break;
   default:
      if(humidity>70)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
-     return msg;
+      bRain=1;
      break;
  }
   event.reply(msg).then(function(data) {
@@ -186,7 +186,7 @@ boardReady({device: 'YWgg'}, function (board) {
     mHum = dht.humidity; 
     mTemp = dht.temperature;
     console.log(mHum);
-    bRain=rain(mTemp,mHum);
+    rain(mTemp,mHum);
     _bot();
     
 /*    if(get_time("hms") == "0:0:0"){
