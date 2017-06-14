@@ -145,7 +145,7 @@ function rain(temperature,humidity){
      bRain=1;
      break;
   case 26:
-     if(humidity>77)
+     if(humidity>60)
       bRain=1;
      break;
   case 27:
