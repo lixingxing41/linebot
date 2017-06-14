@@ -98,6 +98,7 @@ boardReady({device: 'XxOk'}, function (board) {
   var i = 0;
   var temp = 0, humidity = 0;
   mHum = dht.humidity; 
+  console.log(mHum);
   _bot();
   /*dht.read(function(evt){
     mTemptemp = dht.temperature;
