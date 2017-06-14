@@ -90,7 +90,7 @@ function linebot(){
 linebot();
 var i = 0;
 var temp = 0, humidity = 0;
-boardReady({device: 'XxOk'}, function (board) {
+boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
   //myFirebase = new Firebase("https://webduino-23015.firebaseio.com/");
