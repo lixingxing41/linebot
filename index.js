@@ -83,7 +83,10 @@ function get_time(t) {
 
 //linebot
 function _bot(){
-  
+  if(bRain==1)
+  {
+    bot.push('U08fdb11d718b720f728c620a3a74913', '現在日幣 ' + jp + '，該買啦！');
+  }
   bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
@@ -137,8 +140,8 @@ function rain(temperature,humidity){
      
      bRain=1;
      break;
-  case 26:if(humidity>72)
-      
+  case 26:
+     if(humidity>60)
       bRain=1;
      break;
   case 27:
