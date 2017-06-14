@@ -85,7 +85,7 @@ boardReady({
 }, function(board) {
   board.samplingInterval = 250;
   dht = getDht(board, 11);
-  if (dht.humidity > 0) {
+  if (dht.humidity == 0) {
         bot.push('1519721522', '現在濕度 ' + dht.humidity);
       }
 });
