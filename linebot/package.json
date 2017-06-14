@@ -1,0 +1,19 @@
+{
+  "name": "linechat",
+  "version": "1.0.0",
+  "main": "app0504.js",
+  "dependencies": {
+    "express": "^4.15.3",
+    "firebase": "^3.9.0",
+    "linebot": "^1.3.0",
+    "webduino-blockly": "^0.0.11",
+    "webduino-js": "^0.4.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
