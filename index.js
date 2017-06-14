@@ -86,8 +86,7 @@ function _bot(){
  console.log("bot",bRain);
   if(bRain==1)
   {
-    
-    bot.push('U08fdb11d718b720f728c620a3a74913', '現在日幣 ' + jp + '，該買啦！');
+    bot.push('b64e536b-a892-4020-b085-ed89f060a149', '現在日幣 ' + jp + '，該買啦！');
   }
   bot.on('message', function(event) {
   if (event.message.type = 'text') {
