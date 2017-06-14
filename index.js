@@ -104,8 +104,6 @@ function _bot(){
           msg = "現在濕度為 " + mHum + " %";
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
-        if(msg.indexOf('桂一') != -1)
-          bot.push(uid, new Uri("https://veganbloghk.files.wordpress.com/2014/06/dogpig1.jpg")); //發送圖片訊息
         if(msg == '呼叫工具人')
           msg = '就知道你想我了吧~';
         if(msg == '工具人閉嘴'){
