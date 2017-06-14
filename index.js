@@ -95,8 +95,6 @@ function _bot(){
       msg = "現在濕度為 " + mHum + " %";
     if(msg.indexOf('溫度') != -1)
       msg = "現在溫度為 " + mTemp + " °C";
-     if(msg.indexOf('下雨') != -1)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
@@ -196,7 +194,7 @@ boardReady({device: 'YWgg'}, function (board) {
             humidity:dht.humidity
         });
  // 	}
-  }, 100);
+  }, 10000);
   
 });
 
