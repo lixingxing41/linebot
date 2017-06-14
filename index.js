@@ -83,8 +83,10 @@ function get_time(t) {
 
 //linebot
 function _bot(){
+ console.log("bot",bRain);
   if(bRain==1)
   {
+    
     bot.push('U08fdb11d718b720f728c620a3a74913', '現在日幣 ' + jp + '，該買啦！');
   }
   bot.on('message', function(event) {
