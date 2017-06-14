@@ -161,16 +161,9 @@ function rain(temperature,humidity){
      
       bRain=1;
      break;
- }
-  event.reply(msg).then(function(data) {
-      // success 
-      console.log(msg);
-    }).catch(function(error) {
-      // error 
-      console.log('error');
-    });
+ 
+   }
 }
-
 boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
@@ -186,7 +179,7 @@ boardReady({device: 'YWgg'}, function (board) {
     mHum = dht.humidity; 
     mTemp = dht.temperature;
     console.log(mHum);
-    //rain(mTemp,mHum);
+    rain(mTemp,mHum);
     _bot();
     
 /*    if(get_time("hms") == "0:0:0"){
