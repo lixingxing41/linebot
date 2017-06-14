@@ -109,56 +109,56 @@ function rain(temperature,humidity){
  switch (temperature){
   case 20:
      if(humidity>80)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     
       bRain=1;
      break;
   case 21:
      if(humidity>78)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      
       bRain=1;
      break;
   case 22:
      if(humidity>78)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      ;
       bRain=1;
      break;
   case 23:
      if(humidity>72)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      
       bRain=1;
      break;
   case 24:
      if(humidity>78)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      
       bRain=1;
      break;
   case 25:
      if(humidity>76)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     
      bRain=1;
      break;
   case 26:if(humidity>72)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      
       bRain=1;
      break;
   case 27:
      if(humidity>70)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      
       bRain=1;
      break;
   case 28:
      if(humidity>71)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+    
       bRain=1;
      break;
   case 29:
      if(humidity>78)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     
       bRain=1;
      break;
   default:
      if(humidity>70)
-      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     
       bRain=1;
      break;
  }
