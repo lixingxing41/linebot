@@ -85,9 +85,9 @@ boardReady({
 }, function(board) {
   board.samplingInterval = 250;
   dht = getDht(board, 11);
-  if (dht.humidity == 0) {
+//  if (dht.humidity == 0) {
         bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
-      }
+  //    }
 });
 /*boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
