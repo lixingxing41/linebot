@@ -79,7 +79,17 @@ function get_time(t) {
   return varNow;
 }
 
-boardReady({device: 'YWgg'}, function (board) {
+boardReady({
+  device: 'YWgg',
+  multi: true
+}, function(board) {
+  board.samplingInterval = 250;
+  dht = getDht(board, 11);
+  if (dht.humidity > 0) {
+        bot.push('1519721522', '現在濕度 ' + dht.humidity);
+      }
+});
+/*boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
   //myFirebase = new Firebase("https://webduino-23015.firebaseio.com/");
@@ -110,4 +120,4 @@ boardReady({device: 'YWgg'}, function (board) {
         i = 0;
    }
   }, 10000);
-});
+});*/
