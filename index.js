@@ -186,9 +186,9 @@ boardReady({device: 'YWgg'}, function (board) {
     mTemp = dht.temperature;
     console.log(mHum);
     i++;
-    if(i>180)
+    if(i>6)
     {
-      bRain = 0;
+      bRain=i = 0;
       rain(mTemp,mHum);
     }
     
