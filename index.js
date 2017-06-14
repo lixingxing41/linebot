@@ -96,11 +96,66 @@ function _bot(){
       // error 
       console.log('error');
     });
+    rain(mTemp,mHum,msg);
   }
 });
-//  bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
+  
 }
 
+function rain(temperature,humidity,msg){
+ switch (temperature){
+  case 20:
+     if(humidity>80)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 21:
+     if(humidity>78)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 22:
+     if(humidity>78)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 23:
+     if(humidity>72)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 24:
+     if(humidity>78)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 25:
+     if(humidity>76)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 26:if(humidity>72)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 27:
+     if(humidity>70)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 28:
+     if(humidity>71)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  case 29:
+     if(humidity>78)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+  default:
+     if(humidity>70)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     break;
+ }
+  event.reply(msg).then(function(data) {
+      // success 
+      console.log(msg);
+    }).catch(function(error) {
+      // error 
+      console.log('error');
+    });
+}
 
 boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
