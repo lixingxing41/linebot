@@ -7,6 +7,7 @@ var firebase = require("firebase");
 var linebot = require('linebot');
 var express = require('express');
 var mTemp,mHum;
+var bRain;
 
 var bot = linebot({
   channelId: '1519721522',
@@ -81,7 +82,8 @@ function get_time(t) {
 }
 
 //linebot
-function _bot(){
+function _bot(msg){
+  
   bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
@@ -89,6 +91,8 @@ function _bot(){
       msg = "現在濕度為 " + mHum + " %";
     if(msg.indexOf('溫度') != -1)
       msg = "現在溫度為 " + mTemp + " °C";
+     if(msg.indexOf('下雨') != -1 && bRain)
+      msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
@@ -96,56 +100,66 @@ function _bot(){
       // error 
       console.log('error');
     });
-    rain(mTemp,mHum,msg);
   }
 });
   
 }
 
-function rain(temperature,humidity,msg){
+function rain(temperature,humidity){
  switch (temperature){
   case 20:
      if(humidity>80)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+      return 1;
      break;
   case 21:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return 1;
      break;
   case 22:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return 1;
      break;
   case 23:
      if(humidity>72)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return 1;
      break;
   case 24:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return 1;
      break;
   case 25:
      if(humidity>76)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return 1;
      break;
   case 26:if(humidity>72)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return msg;
      break;
   case 27:
      if(humidity>70)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return msg;
      break;
   case 28:
      if(humidity>71)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return msg;
      break;
   case 29:
      if(humidity>78)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return msg;
      break;
   default:
      if(humidity>70)
       msg = "家裡附近可能會下雨，趕快回家收衣服唷!";
+     return msg;
      break;
  }
   event.reply(msg).then(function(data) {
@@ -167,10 +181,12 @@ boardReady({device: 'YWgg'}, function (board) {
   //每十秒檢測一次，且記錄每半小之平均值
   var i = 0;
   var temp = 0, humidity = 0;
+  bRain = 0;
   dht.read(function(evt){
     mHum = dht.humidity; 
     mTemp = dht.temperature;
     console.log(mHum);
+    bRain=rain(mTemp,mHum);
     _bot();
     
 /*    if(get_time("hms") == "0:0:0"){
