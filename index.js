@@ -80,10 +80,27 @@ function get_time(t) {
   return varNow;
 }
 
+//linebot
 function _bot(){
-//  clearTimeout(timer);
+  bot.on('message', function(event) {
+    if (event.message.type == 'text') {
+      var msg = event.message.text;
+      var replyMsg = '';
+      if (msg.contains('濕度') != -1) {
+        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
+      }
+      if (msg.contains('溫度') != -1) {
+        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mTemp);
+      }
+      
+      event.reply(replyMsg).then(function(data) {
+        console.log(replyMsg);
+      }).catch(function(error) {
+        console.log('error');
+      });
+    }
+  });
 //  bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
-//  timer = setInterval(linebot, 1000);
 }
 
 
@@ -99,19 +116,20 @@ boardReady({device: 'XxOk'}, function (board) {
   var temp = 0, humidity = 0;
   dht.read(function(evt){
     mHum = dht.humidity; 
+    mTemp = dht.temperature;
     console.log(mHum);
     _bot();
     
-    if(get_time("hms") == "0:0:0"){
+/*    if(get_time("hms") == "0:0:0"){
   		myFirebase.set({}); //clear data
-  	}else{
+  	}else{*/
   		myFirebase.push({
         	date:get_date("ymd"),
             time:get_time("hms"),
             temp:dht.temperature,
             humidity:dht.humidity
         });
-  	}
+ // 	}
   }, 10000);
   
 });
