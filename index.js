@@ -86,7 +86,7 @@ function _bot(){
  console.log("bot",bRain);
   if(bRain==1)
   {
-    bot.push('b64e536b-a892-4020-b085-ed89f060a149', '現在日幣 ' + jp + '，該買啦！');
+    //bot.push('b64e536b-a892-4020-b085-ed89f060a149', '現在日幣 ' + jp + '，該買啦！');
   }
   bot.on('message', function(event) {
   if (event.message.type = 'text') {
@@ -196,7 +196,7 @@ boardReady({device: 'YWgg'}, function (board) {
             humidity:dht.humidity
         });
  // 	}
-  }, 10000);
+  }, 100);
   
 });
 
