@@ -79,15 +79,6 @@ function get_time(t) {
   return varNow;
 }
 
-function linebot(){
-  clearTimeout(timer);
-  if (dht < 0.28) {
-        bot.push('1519721522', '現在濕度 ' + jp + '，該買啦！');
-      }
-      timer = setInterval(linebot, 120000);
-}
-
-
 boardReady({device: 'YWgg'}, function (board) {
   board.systemReset();
   board.samplingInterval = 250;
@@ -101,7 +92,7 @@ boardReady({device: 'YWgg'}, function (board) {
   dht.read(function(evt){
    temp += dht.temperature;
    humidity += dht.humidity;
-   if (dht.humidity > 70) {
+   if (dht.humidity > 40) {
         bot.push('1519721522', '現在濕度 ' + dht.humidity);
       }
    i++;
