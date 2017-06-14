@@ -38,6 +38,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
   var myFirebase = db.ref();
 
   var timer;
+  linebot();
 
 function get_date(t) {
   var varDay = new Date(),
@@ -79,6 +80,14 @@ function get_time(t) {
   return varNow;
 }
 
+function linebot(){
+  clearTimeout(timer);
+  if (dht >0) {
+        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
+      }
+      timer = setInterval(linebot, 120000);
+}
+
 boardReady({
   device: 'XxOk',
   multi: true
@@ -86,7 +95,7 @@ boardReady({
   board.samplingInterval = 250;
   dht = getDht(board, 11);
 //  if (dht.humidity == 0) {
-        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
+   //     bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + dht.humidity);
   //    }
 });
 /*boardReady({device: 'YWgg'}, function (board) {
