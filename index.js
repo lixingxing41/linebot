@@ -186,7 +186,7 @@ boardReady({device: 'YWgg'}, function (board) {
     mHum = dht.humidity; 
     mTemp = dht.temperature;
     console.log(mHum);
-    bRain=rain(mTemp,mHum);
+    //bRain=rain(mTemp,mHum);
     _bot();
     
 /*    if(get_time("hms") == "0:0:0"){
