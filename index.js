@@ -8,9 +8,9 @@ var linebot = require('linebot');
 var express = require('express');
 
 var bot = linebot({
-  channelId: 1519721522,
-  channelSecret: 806587c1591561d5843efc5921d1dad5,
-  channelAccessToken: MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU=
+  channelId: "1519721522",
+  channelSecret: "806587c1591561d5843efc5921d1dad5",
+  channelAccessToken: "MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU="
 });
 
 const app = express();
