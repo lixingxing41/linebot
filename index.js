@@ -18,6 +18,10 @@ const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
 
+//建立LineBot物件實體
+isRock.LineBot.Bot LineBot = new isRock.LineBot.Bot('MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU=');
+
+
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
@@ -105,7 +109,7 @@ function _bot(){
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
         if(msg.indexOf('桂一') != -1)
-          bot.PushMessage(uid, new Uri("https://veganbloghk.files.wordpress.com/2014/06/dogpig1.jpg")); //發送圖片訊息
+          LineBot.PushMessage(uid, new Uri("https://veganbloghk.files.wordpress.com/2014/06/dogpig1.jpg")); //發送圖片訊息
         if(msg == '呼叫工具人')
           msg = '就知道你想我了吧~';
         if(msg == '工具人閉嘴'){
