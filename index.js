@@ -87,7 +87,6 @@ function linebot(){
       timer = setInterval(linebot, 120000);
 }
 
-linebot();
 var i = 0;
 var temp = 0, humidity = 0;
 boardReady({device: 'YWgg'}, function (board) {
@@ -99,12 +98,12 @@ boardReady({device: 'YWgg'}, function (board) {
   console.log("clear ok");
   //每十秒檢測一次，且記錄每半小之平均值
   
-  
+  linebot();
   dht.read(function(evt){
    temp += dht.temperature;
    humidity += dht.humidity;
    i++;
-   if(i>59){
+ /*  if(i>59){
     temp /= 60;
     humidity /= 60;
     myFirebase.push({
@@ -116,6 +115,16 @@ boardReady({device: 'YWgg'}, function (board) {
         temp = 0;
         humidity = 0;
         i = 0;
-   }
-  }, 10000);
+   }*/
+   if(get_time("hms") == "0:0:0"){
+  		myFirebase.set({}); //clear data
+  	}else{
+  		myFirebase.push({
+        	date:get_date("ymd"),
+            time:get_time("hms"),
+            temp:temp,
+            humidity:humidity
+        });
+  	}
+  }, 1000);
 });
