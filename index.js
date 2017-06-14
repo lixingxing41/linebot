@@ -10,6 +10,7 @@ var mTemp,mHum;
 var bRain;
 var uid;
 var i = 0;
+var flag = 0;
 
 var bot = linebot({
   channelId: '1519721522',
@@ -89,25 +90,36 @@ function _bot(){
   if(bRain==1)
   {
     bot.push('U29c716493f690891169338083c3599ca', '家裡附近可能會下雨，回家收衣服喔!! ');
+    bot.push('U08fdb11d718b720f728c620a3a749139', '家裡附近可能會下雨，回家收衣服喔!! ');
     bRain=0;
   }
   bot.on('message', function(event) {
     uid = event.source.userId;
     console.log(uid);
-  if (event.message.type = 'text') {
-    var msg = event.message.text;
-    if(msg.indexOf('濕度') != -1)
-      msg = "現在濕度為 " + mHum + " %";
-    if(msg.indexOf('溫度') != -1)
-      msg = "現在溫度為 " + mTemp + " °C";
-    event.reply(msg).then(function(data) {
-      // success 
-      console.log(msg);
-    }).catch(function(error) {
-      // error 
-      console.log('error');
-    });
-  }
+    if (event.message.type = 'text') {
+      var msg = event.message.text;
+      if(flag == 0){ 
+        if(msg.indexOf('濕度') != -1)
+          msg = "現在濕度為 " + mHum + " %";
+        if(msg.indexOf('溫度') != -1)
+          msg = "現在溫度為 " + mTemp + " °C";
+        if(msg == '工具人閉嘴'){
+          flag = 1;
+          msg = '掰掰~ 再次呼叫請輸入\"呼叫工具人\"';
+        }
+        event.reply(msg).then(function(data) {
+        // success 
+        console.log(msg);
+        }).catch(function(error) {
+        // error 
+        console.log('error');
+        });
+      }else if(flag == 1){
+        if(msg == '呼叫工具人')
+          flag = 0;
+      }
+    }
+  
 });
   
 }
