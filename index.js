@@ -101,27 +101,17 @@ boardReady({device: 'XxOk'}, function (board) {
     mHum = dht.humidity; 
     console.log(mHum);
     _bot();
+    
+    if(get_time("hms") == "0:0:0"){
+  		myFirebase.set({}); //clear data
+  	}else{
+  		myFirebase.push({
+        	date:get_date("ymd"),
+            time:get_time("hms"),
+            temp:dht.temperature,
+            humidity:dht.humidity
+        });
+  	}
   }, 10000);
   
-  
-  /*dht.read(function(evt){
-    mTemptemp = dht.temperature;
-   mHum = dht.humidity;
-   temp += dht.temperature;
-   humidity += dht.humidity;
-   i++;
-   if(i>59){
-    temp /= 60;
-    humidity /= 60;
-    myFirebase.push({
-         date:get_date("ymd"),
-            time:get_time("hms"),
-            temp:temp,
-            humidity:humidity
-        });
-        temp = 0;
-        humidity = 0;
-        i = 0;
-   }
-  }, 10000); */
 });
