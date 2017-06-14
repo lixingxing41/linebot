@@ -86,9 +86,9 @@ function _bot(){
   if (event.message.type = 'text') {
     var msg = event.message.text;
     if(msg.indexOf('濕度') != -1)
-      msg = "現在濕度為" + mHum;
+      msg = "現在濕度為 " + mHum + " %";
     if(msg.indexOf('溫度') != -1)
-      msg = "現在溫度為" + mTemp;
+      msg = "現在溫度為 " + mTemp + " °C";
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
