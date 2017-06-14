@@ -82,10 +82,9 @@ function get_time(t) {
 
 function _bot(){
   clearTimeout(timer);
- 
-        bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
-  dht.read
-      timer = setInterval(linebot, 120000);
+  mHum = dht.humidity; 
+  bot.push('U08fdb11d718b720f728c620a3a749139', '現在濕度 ' + mHum);
+  timer = setInterval(linebot, 120000);
 }
 
 
