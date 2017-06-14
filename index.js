@@ -82,7 +82,7 @@ function get_time(t) {
 }
 
 //linebot
-function _bot(msg){
+function _bot(){
   
   bot.on('message', function(event) {
   if (event.message.type = 'text') {
