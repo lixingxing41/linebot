@@ -92,7 +92,7 @@ boardReady({device: 'YWgg'}, function (board) {
   dht.read(function(evt){
    temp += dht.temperature;
    humidity += dht.humidity;
-   if (dht.humidity > 40) {
+   if (dht.humidity > 0) {
         bot.push('1519721522', '現在濕度 ' + dht.humidity);
       }
    i++;
