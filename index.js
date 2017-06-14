@@ -1,12 +1,12 @@
 require("webduino-js");
 require("webduino-blockly");
 
+//variable about webduino 
 var myFirebase;
 var dht;
-var firebase = require("firebase");
+var mTemp=0,mHum=0,bRain=0,uid=0,i=0,flag=0;
 
-var mTemp=mHum=bRain=uid=i=flag=0;
-
+//variable about linebot
 var linebot = require('linebot');
 var express = require('express');
 var bot = linebot({
@@ -14,10 +14,10 @@ var bot = linebot({
   channelSecret: '806587c1591561d5843efc5921d1dad5',
   channelAccessToken: 'MkEw1JjQkoPB4hIc5G0ZkmPZIidAuTrJn+580oHFlbpedpz6YvKNLjbxQTQu2baRn6rIE5XZychETKRY2THtxLSaGsDOu/UjjeyfbRoj1RHyu/Ro0xZdPJpGlqLwL/gcJPc2w9Q/OwRrSG5sKiSxdQdB04t89/1O/w1cDnyilFU='
 });
-
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
+
 
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
 var server = app.listen(process.env.PORT || 8080, function() {
@@ -25,27 +25,29 @@ var server = app.listen(process.env.PORT || 8080, function() {
   console.log("App now running on port", port);
 });
 
+
 // Initialize Firebase
-  var config = {
+var firebase = require("firebase");
+var config = {
     apiKey: "AIzaSyAI5OY5GIKM7wBoa3inb4dBA2IozHxOYRU",
     authDomain: "webduino-23015.firebaseapp.com",
     databaseURL: "https://webduino-23015.firebaseio.com",
     projectId: "webduino-23015",
     storageBucket: "webduino-23015.appspot.com",
     messagingSenderId: "927229253803"
-  };
-  firebase.initializeApp(config);
-  //connect
-  var db = firebase.database();
-  var myFirebase = db.ref();
+};
+firebase.initializeApp(config);
 
-  var timer;
+//firebase connect
+var db = firebase.database();
+var myFirebase = db.ref();
+
 
 function get_date(t) {
   var varDay = new Date(),
-    varYear = varDay.getFullYear(),
-    varMonth = varDay.getMonth() + 1,
-    varDate = varDay.getDate();
+  varYear = varDay.getFullYear(),
+  varMonth = varDay.getMonth() + 1,
+  varDate = varDay.getDate();
   var varNow;
   if (t == "ymd") {
     varNow = varYear + "/" + varMonth + "/" + varDate;
@@ -63,11 +65,12 @@ function get_date(t) {
   return varNow;
 }
 
+
 function get_time(t) {
   var varTime = new Date(),
-    varHours = varTime.getHours(),
-    varMinutes = varTime.getMinutes(),
-    varSeconds = varTime.getSeconds();
+  varHours = varTime.getHours(),
+  varMinutes = varTime.getMinutes(),
+  varSeconds = varTime.getSeconds();
   var varNow;
   if (t == "hms") {
     varNow = varHours + ":" + varMinutes + ":" + varSeconds;
@@ -83,13 +86,15 @@ function get_time(t) {
 
 //linebot
 function _bot(){
- console.log("bot",bRain);
-  if(bRain==1)
-  {
+  console.log("bot",bRain);
+  
+  
+  if(bRain==1){//如果判斷可能會下雨
     bot.push('U29c716493f690891169338083c3599ca', '家裡附近可能會下雨，回家收衣服喔!! ');
     bot.push('U08fdb11d718b720f728c620a3a749139', '家裡附近可能會下雨，回家收衣服喔!! ');
     bRain=0;
   }
+  
   bot.on('message', function(event) {
     uid = event.source.userId;
     console.log(uid);
@@ -113,107 +118,100 @@ function _bot(){
         });
       }else if(flag == 1){
         if(msg == '呼叫工具人')
-          flag = 0;
+        flag = 0;
       }
     }
-  
-});
-  
+  });
 }
 
 function rain(temperature,humidity){
  switch (temperature){
+     
   case 20:
      if(humidity>80)
-     
-      bRain=1;
-     break;
-  case 21:
-     if(humidity>78)
-      
-      bRain=1;
-     break;
-  case 22:
-     if(humidity>78)
-      ;
-      bRain=1;
-     break;
-  case 23:
-     if(humidity>72)
-      
-      bRain=1;
-     break;
-  case 24:
-     if(humidity>78)
-      
-      bRain=1;
-     break;
-  case 25:
-     if(humidity>76)
-     
      bRain=1;
      break;
+     
+  case 21:
+     if(humidity>78)
+     bRain=1;
+     break;
+     
+  case 22:
+     if(humidity>78)
+     bRain=1;
+     break;
+     
+  case 23:
+     if(humidity>72)
+     bRain=1;
+     break;
+     
+  case 24:
+     if(humidity>78)
+     bRain=1;
+     break;
+     
+  case 25:
+     if(humidity>76)
+     bRain=1;
+     break;
+     
   case 26:
      if(humidity>77)
-      bRain=1;
+     bRain=1;
      break;
+     
   case 27:
      if(humidity>70)
-      
-      bRain=1;
+     bRain=1;
      break;
+     
   case 28:
      if(humidity>71)
-    
-      bRain=1;
+     bRain=1;
      break;
+     
   case 29:
      if(humidity>78)
-     
-      bRain=1;
+     bRain=1;
      break;
+     
   default:
      if(humidity>70)
-     
-      bRain=1;
+     bRain=1;
      break;
- 
    }
 }
+
 boardReady({device: 'YWgg'}, function (board) {
+  var temp = 0, humidity = 0;
   board.systemReset();
   board.samplingInterval = 250;
   //myFirebase = new Firebase("https://webduino-23015.firebaseio.com/");
   dht = getDht(board, 11);
-  myFirebase.set({}); //clear data
-  console.log("clear ok");
+  
+  //myFirebase.set({}); //clear data
+  //console.log("clear ok");
+  
   //每十秒檢測一次，且記錄每半小之平均值
- 
-  var temp = 0, humidity = 0;
-  dht.read(function(evt){
-    mHum = dht.humidity; 
-    mTemp = dht.temperature;
-    console.log(mHum);
-    i++;
-    if(i > 180)
-    {
+   dht.read(function(evt){
+   mHum = dht.humidity; 
+   mTemp = dht.temperature;
+   i++;
+   if(i > 180){//每半小時檢查一次有沒有可能會下雨
       bRain = i = 0;
       rain(mTemp,mHum);
-    }
+   }
+    _bot();//call linebot
     
-    _bot();
-    
-/*    if(get_time("hms") == "0:0:0"){
-  		myFirebase.set({}); //clear data
-  	}else{*/
-  		myFirebase.push({
-        	date:get_date("ymd"),
-            time:get_time("hms"),
-            temp:dht.temperature,
-            humidity:dht.humidity
-        });
- // 	}
-  }, 10000);
+  	myFirebase.push({
+      date:get_date("ymd"),
+      time:get_time("hms"),
+      temp:dht.temperature,
+      humidity:dht.humidity
+    });
+   }, 10000);
   
 });
 
