@@ -40,6 +40,7 @@ firebase.initializeApp(config);
 //firebase connect
 var db = firebase.database();
 var myFirebase = db.ref();
+var storage = firebase.storage();
 
 function get_date(t) {
   var varDay = new Date(),
@@ -106,8 +107,8 @@ function _bot(){
         if(msg == '桂一'){
           event.reply({
             type: 'image',
-              originalContentUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=9c3cedca-17ab-48b0-bf05-a658006f6ba2',
-              previewImageUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=9c3cedca-17ab-48b0-bf05-a658006f6ba2'
+              originalContentUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=5cf5bba7-d860-4328-8e89-26a8a4f83a9c',
+              previewImageUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=5cf5bba7-d860-4328-8e89-26a8a4f83a9c'
             });
         }
         if(msg == '呼叫工具人')
