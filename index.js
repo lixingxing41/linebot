@@ -41,6 +41,7 @@ firebase.initializeApp(config);
 var db = firebase.database();
 var myFirebase = db.ref();
 var storage = firebase.storage();
+var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=5cf5bba7-d860-4328-8e89-26a8a4f83a9c');
 
 function get_date(t) {
   var varDay = new Date(),
