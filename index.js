@@ -104,6 +104,13 @@ function _bot(){
           msg = "現在濕度為 " + mHum + " %";
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
+        if(msg == '桂一'){
+          event.reply({
+            type: 'image',
+              originalContentUrl: 'https://drive.google.com/open?id=0B6WgtIE8hEs-QjVJeHpHMFhsWVE',
+              previewImageUrl: 'https://drive.google.com/open?id=0B6WgtIE8hEs-QjVJeHpHMFhsWVE'
+            });
+        }
         if(msg == '呼叫工具人')
           msg = '就知道你想我了吧~';
         if(msg == '工具人閉嘴'){
