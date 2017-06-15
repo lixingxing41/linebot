@@ -18,12 +18,12 @@ const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
 
+
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
 });
-
 
 // Initialize Firebase
 var firebase = require("firebase");
@@ -40,7 +40,10 @@ firebase.initializeApp(config);
 //firebase connect
 var db = firebase.database();
 var myFirebase = db.ref();
-
+//Get a reference to the storage service
+var storage = firebase.storage();
+// Create a storage reference from our storage service
+var storageRef = storage.ref();
 
 function get_date(t) {
   var varDay = new Date(),
@@ -105,10 +108,29 @@ function _bot(){
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
         if(msg == '桂一'){
+          var p_url;
+          storageRef.child('images/S__47710348.jpg').getDownloadURL().then(function(url) {
+            // `url` is the download URL for 'images/stars.jpg'
+            // This can be downloaded directly:
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+              var blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            // Or inserted into an <img> element:
+            var img = document.getElementById('myimg');
+            img.src = url;
+            p_url = url;
+          }).catch(function(error) {
+          // Handle any errors
+          });
+
           event.reply({
             type: 'image',
-              originalContentUrl: 'https://drive.google.com/open?id=0B6WgtIE8hEs-QjVJeHpHMFhsWVE',
-              previewImageUrl: 'https://drive.google.com/open?id=0B6WgtIE8hEs-QjVJeHpHMFhsWVE'
+              originalContentUrl: p_url,
+              previewImageUrl: p_url
             });
         }
         if(msg == '呼叫工具人')
