@@ -108,8 +108,8 @@ function _bot(){
         if(msg == '桂一'){
           event.reply({
             type: 'image',
-              originalContentUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=5cf5bba7-d860-4328-8e89-26a8a4f83a9c',
-              previewImageUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=5cf5bba7-d860-4328-8e89-26a8a4f83a9c'
+              originalContentUrl: httpsReference,
+              previewImageUrl: httpsReference
             });
         }
         if(msg == '呼叫工具人')
