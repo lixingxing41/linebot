@@ -40,10 +40,6 @@ firebase.initializeApp(config);
 //firebase connect
 var db = firebase.database();
 var myFirebase = db.ref();
-//Get a reference to the storage service
-var storage = firebase.storage();
-// Create a storage reference from our storage service
-var storageRef = storage.ref();
 
 function get_date(t) {
   var varDay = new Date(),
@@ -108,29 +104,10 @@ function _bot(){
         if(msg.indexOf('溫度') != -1)
           msg = "現在溫度為 " + mTemp + " °C";
         if(msg == '桂一'){
-          var p_url;
-          storageRef.child('images/S__47710348.jpg').getDownloadURL().then(function(url) {
-            // `url` is the download URL for 'images/stars.jpg'
-            // This can be downloaded directly:
-            var xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            xhr.onload = function(event) {
-              var blob = xhr.response;
-            };
-            xhr.open('GET', url);
-            xhr.send();
-            // Or inserted into an <img> element:
-            var img = document.getElementById('myimg');
-            img.src = url;
-            p_url = url;
-          }).catch(function(error) {
-          // Handle any errors
-          });
-
           event.reply({
             type: 'image',
-              originalContentUrl: p_url,
-              previewImageUrl: p_url
+              originalContentUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=9c3cedca-17ab-48b0-bf05-a658006f6ba2',
+              previewImageUrl: 'https://firebasestorage.googleapis.com/v0/b/webduino-23015.appspot.com/o/S__47710348.jpg?alt=media&token=9c3cedca-17ab-48b0-bf05-a658006f6ba2'
             });
         }
         if(msg == '呼叫工具人')
